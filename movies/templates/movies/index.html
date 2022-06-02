@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %}
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Genre</th>
+      <th>Stock</th>
+      <th>Daily Rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for movie in movies %}
+    <!-- # for logic e.g. loops, condtitional statements use
+                  single curly bracket. When you use djangho html template extension, use double
+                  curly bracket. -->
+    <tr>
+      <td>
+        <!-- 'movie:detail' means that the the template detail in module views.py belongs to the movie app and this helps django to fetch the correct detail template when we have a lot of movies in the django project. But this will work if in the urls.py for the app movie you have used the conventionally known variable name app_name = 'movies' -->
+        <a href="{% url 'movies:detail' movie.id %}">{{movie.title}}</a>
+      </td>
+      <!-- # for logic e.g. loops, condtitiona statements use
+                  single curly bracket. When you use djangho html template extension, use double
+                  curly bracket. -->
+      <td>{{movie.genre}}</td>
+      <td>{{movie.number_in_stock}}</td>
+      <td>{{movie.daily_rate}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
